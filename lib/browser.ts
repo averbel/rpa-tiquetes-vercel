@@ -1,4 +1,3 @@
-import chromium from '@sparticuz/chromium-min';
 import { chromium as playwrightChromium, Browser } from 'playwright-core';
 
 /**
@@ -10,6 +9,10 @@ import { chromium as playwrightChromium, Browser } from 'playwright-core';
  * variante lo descarga desde una URL pública la primera vez que corre
  * (queda cacheado en /tmp en invocaciones posteriores mientras la
  * instancia siga "caliente").
+ *
+ * @sparticuz/chromium-min se publica como modulo ESM. Como este proyecto
+ * compila a CommonJS, no se puede hacer "import chromium from ..." estatico
+ * (Node lanza ERR_REQUIRE_ESM). Por eso se carga con import() dinamico.
  *
  * Debes configurar la variable de entorno CHROMIUM_PACK_URL con la URL
  * del asset "chromium-vX.X.X-pack.x64.tar" de la ULTIMA release de:
@@ -27,6 +30,8 @@ export async function getBrowser(): Promise<Browser> {
       'chromium-vX.X.X-pack.x64.tar de https://github.com/Sparticuz/chromium/releases'
     );
   }
+
+  const { default: chromium } = await import('@sparticuz/chromium-min');
 
   const executablePath = await chromium.executablePath(packUrl);
 
