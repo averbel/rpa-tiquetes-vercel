@@ -1,18 +1,5 @@
+import chromium from '@sparticuz/chromium-min';
 import { chromium as playwrightChromium, Browser } from 'playwright-core';
-
-/**
- * TypeScript "downlevela" el import() dinamico a require() cuando el
- * proyecto compila a CommonJS (nuestro caso). Eso rompe la carga de
- * paquetes puramente ESM como @sparticuz/chromium-min, porque Node no
- * permite require() de un modulo ESM.
- *
- * Este helper usa new Function(...) para que TypeScript no vea el
- * import() como codigo estatico y no lo reescriba: el import() que
- * queda en el JS compilado es el nativo de Node, no un require().
- */
-const trueDynamicImport = new Function('specifier', 'return import(specifier)') as (
-  specifier: string
-) => Promise<any>;
 
 /**
  * Lanza Chromium dentro de una función serverless de Vercel.
@@ -40,8 +27,6 @@ export async function getBrowser(): Promise<Browser> {
       'chromium-vX.X.X-pack.x64.tar de https://github.com/Sparticuz/chromium/releases'
     );
   }
-
-  const { default: chromium } = await trueDynamicImport('@sparticuz/chromium-min');
 
   const executablePath = await chromium.executablePath(packUrl);
 
