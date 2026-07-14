@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "playwright-core": "*",
-    "@sparticuz/chromium": "*"
+    "@sparticuz/chromium-min": "*"
   },
   "devDependencies": {
     "@vercel/node": "*",
