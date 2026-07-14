@@ -58,7 +58,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 4. Avanzar hasta la pantalla de pago (SIN seleccionar medio de pago ni pagar)
     await page.click('[data-testid="continue-to-payment-button"]').catch(() => {});
-    await page.waitForSelector('[data-testid="payment-methods-section"]', { timeout: 30000 }).catch(() => {});
+    await page.waitForSelector('[data-testid="payment-methods-section"]', { timeout: 15000 }).catch(() => {});
 
     // 5. Captura de evidencia (en memoria, sin escribir a disco -> el filesystem
     //    de una función serverless es efímero y de solo lectura salvo /tmp)
