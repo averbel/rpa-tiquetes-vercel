@@ -44,7 +44,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
     await page.fill('[data-testid="passengers-input"]', String(cantidadPasajeros || 1)).catch(() => {});
     await page.click('[data-testid="search-flights-button"]').catch(() => {});
-    await page.waitForSelector('[data-testid="flight-result-card"]', { timeout: 30000 }).catch(() => {});
+    await page.waitForSelector('[data-testid="flight-result-card"]', { timeout: 15000 }).catch(() => {});
 
     const vuelos = await page.$$eval('[data-testid="flight-result-card"]', (cards) =>
       cards.map((card) => ({
