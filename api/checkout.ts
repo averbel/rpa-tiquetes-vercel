@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getBrowser } from '../lib/browser';
-import { isAuthorized } from '../lib/auth';
+import { getBrowser } from '../lib/browser.js';
+import { isAuthorized } from '../lib/auth.js';
 
 /**
  * POST /api/checkout
