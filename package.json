@@ -10,8 +10,8 @@
     "@sparticuz/chromium-min": "*"
   },
   "devDependencies": {
-    "@vercel/node": "*",
-    "typescript": "*",
-    "@types/node": "*"
+    "@vercel/node": "^3.2.20",
+    "typescript": "^5.7.3",
+    "@types/node": "^22.10.5"
   }
 }
